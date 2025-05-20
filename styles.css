@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "XiaoKeNaiLaoTi";
+  src: url("XiaoKeNaiLaoTi.ttf");
+}
+
+
+.background-container {
+  width: 100%;
+  height: 100vh;
+  background-image: url('background.jpg'); /* 替换为风景图实际文件名和路径 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* 为子元素定位做准备 */
+	}
+
+/* 控制按钮样式 */
+        .control-btn {
+			font-family:XiaoKeNaiLaoTi;
+            display: block;                /* 块级元素 */
+            margin: 0 auto 20px;           /* 水平居中，底部外边距 */
+            padding: 10px 25px;            /* 内边距 */
+            font-size: 24px;               /* 字体大小 */
+            background-color: #4CAF50;     /* 绿色背景 */
+            color: white;                  /* 白色文字 */
+            border: 4px solid #008CBA;     /* 边框效果 */
+            border-radius: 5px;            /* 圆角 */
+            cursor: pointer;               /* 手型指针 */
+            transition: all 0.3s;          /* 过渡效果 */
+		
+        }
+
+/* 按钮悬停状态 */
+        .control-btn:hover {
+            background-color: #45a049;     /* 深绿色 */
+            transform: scale(1.05);       /* 轻微放大 */
+        }
+
+/* 按钮消失效果 */
+        .btn-fade-out {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none; /* 禁用点击事件 */
+        }
+
+
+.penguin-image {
+  width: 150px; /* 根据需要调整企鹅图片宽度 */
+  height: auto;
+  position: absolute;  
+  opacity: 0;
+  z-index: 1;
+	}	
+
+.cake-image {
+  width: 100px; /* 根据需要调整蛋糕图片宽度 */
+  height: auto;
+  position: absolute;  
+  opacity: 0;
+  z-index: 2;
+  left:852px; top: 80%; transform: translateY(0);
+  transform: scale(0.5);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	}
+	
+/* 结果显示类 */
+       .show-result {
+            opacity: 1 !important ;
+			transform: scale(1);
+        }
+
+/* 第一个动画：企鹅移动 */
+        .anim-move-penguin {
+            animation: penguin_moveAndRotate 10s linear 1;
+			animation-fill-mode: forwards;   /* 填充模式forwards时以最后一帧作为填充 */
+        }
+
+:root {
+    --rotation-angle: 5deg; /* 定义旋转角度变量 */
+  }
+
+ @keyframes penguin_moveAndRotate {
+    0% {
+      transform: translate(-200px, 0px) rotate(calc(-1 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+    15% {
+      transform: translate(-300px, 150px) rotate(calc(0.5 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+    25% {
+      transform: translate(-350px, 250px) rotate(calc(-0.8 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+    30% {
+      transform: translate(-300px, 230px) rotate(calc(0.9 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+    40% {
+      transform: translate(-200px, 210px) rotate(calc(-0.6 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+    50% {
+      transform: translate(-100px, 180px) rotate(calc(0.7 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+    60% {
+      transform: translate(0px, 150px) rotate(calc(-0.9 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+    70% {
+      transform: translate(75px, 140px) rotate(calc(0.8 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+    85% {
+      transform: translate(140px, 180px) rotate(calc(-0.5 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+    90% {
+      transform: translate(150px, 210px) rotate(calc(0.6 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+    100% {
+      transform: translate(160px, 250px) rotate(calc( 0 * var(--rotation-angle)));
+	  opacity: 1;
+    }
+  }
+
+/* 生日祝福文字容器 */
+        .birthday-text {
+            position: absolute;
+            width: 400px;
+            height: 200px;
+            left: 70%;
+            top: 90%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 1s ease 0.5s; /* 延迟0.5秒淡入 */
+            z-index: 3;
+            pointer-events: none;
+        }
+/* 圆弧排列的文字 */
+        .birthday-text span {
+            position: absolute;
+            font-size: 72px;
+            font-weight: bold;
+            color: #ff1f6c;
+            transform-origin: 0 100px;
+            transition: all 0.5s ease;
+            text-shadow: 0 0 5px rgba(255,255,255,0.8);
+			font-family:XiaoKeNaiLaoTi;
+        }
+        
+/* 显示祝福文字 */
+        .show-birthday {
+            opacity: 1;
+        }
+
+
+
+
