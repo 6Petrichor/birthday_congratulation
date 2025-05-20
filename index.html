@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Combined Background Page</title>
+
+</head>
+
+<body>
+  <div class="background-container">
+    <img src="penguin.png" alt="Penguin" class="penguin-image" id="penguin" > <!-- 添加企鹅图片，把'penguin.png'换成实际文件名和路径 -->
+	<img src="cake.png" alt="cake" class="cake-image" id="cake" > <!-- 添加蛋糕图片 -->
+	<button class="control-btn"  id="startPathBtn"  >让我们欢迎小企鹅的到来！（点击）</button>     <!-- 添加启动按钮，点击后启动动画 -->
+    <div class="birthday-text" id="birthdayText">                                         <!-- 生日祝福文字 - 圆弧排列 -->
+            <span style="transform: rotate(-60deg) translateY(-300px);">小</span>
+            <span style="transform: rotate(-48deg) translateY(-300px);">橙</span>
+            <span style="transform: rotate(-36deg) translateY(-300px);">皮</span>
+            <span style="transform: rotate(-24deg) translateY(-300px);">丁</span>
+            <span style="transform: rotate(-12deg) translateY(-300px);">!</span>
+			<span style="transform: rotate(12deg) translateY(-300px);">生</span>
+            <span style="transform: rotate(24deg) translateY(-300px);">日</span>
+            <span style="transform: rotate(36deg) translateY(-300px);">快</span>
+            <span style="transform: rotate(48deg) translateY(-300px);">乐</span>
+            <span style="transform: rotate(60deg) translateY(-300px);">!</span>
+    </div>
+  </div>
+  <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            const actionBtn = document.getElementById('startPathBtn');
+            const targetImage = document.getElementById('penguin');
+			const targetImage1 = document.getElementById('cake');
+			const birthdayText = document.getElementById('birthdayText');
+            
+            // 点击事件处理
+            actionBtn.addEventListener('click', function() {
+                // 1. 按钮淡出消失
+                actionBtn.classList.add('btn-fade-out');
+                
+                // 2. 显示图片并开始动画
+                setTimeout(() => {
+                    targetImage.classList.add('anim-move-penguin');
+                }, 100); // 稍延迟确保按钮动画开始
+                
+                // 3. 动画结束后显示蛋糕
+                targetImage.addEventListener('animationend', function() {
+                    actionBtn.style.display = 'none';
+                    setTimeout(() => {
+					   targetImage1.classList.add('show-result');
+					}, 500);
+                    console.log(' cake动画播放完成');
+					setTimeout(() => {
+					    console.log(' cake动画播放完成进入判断');
+                        birthdayText.classList.add('show-birthday');                            
+                        // 为每个文字添加单独的动画
+                        const chars = birthdayText.querySelectorAll('span');
+                        chars.forEach((char, index) => {
+                            setTimeout(() => {
+                                char.style.transform = char.style.transform.replace('translateY(-100px)', 'translateY(-120px)');
+                            }, index * 100);
+                        });
+                    }, 1000);
+                }, { once: true });
+			
+				
+            });
+        });
+   </script> 
+  
+  
+</body>
+
+</html>
